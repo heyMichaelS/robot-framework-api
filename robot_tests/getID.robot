@@ -58,7 +58,7 @@ Step 6 - Validar Datas de Reserva
 Step 7 - Validar Necessidades Adicionais
     [Arguments]    ${json_response}
     ${additionalneeds}=    Get From Dictionary    ${json_response}    additionalneeds
-    Should Be Equal As Strings    ${additionalneeds}    Breakfast
+    Should Be Equal As Strings    ${additionalneeds}    Lunch
 
 
 *** Test Cases ***

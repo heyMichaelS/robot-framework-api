@@ -1,0 +1,24 @@
+name: Testes com Robot Framework API
+
+on: [pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Executar testes com Robot Framework
+        uses: joonvena/robotframework-docker-action@v1.0
+        with:
+          robot_reports_dir: 'reports'
+
+      - name: Upload dos resultados dos testes
+        uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: robot-reports
+          path: reports
+          retention-days: 2
