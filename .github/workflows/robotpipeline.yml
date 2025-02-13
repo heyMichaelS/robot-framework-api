@@ -8,7 +8,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Executar testes com Robot Framework
         uses: joonvena/robotframework-docker-action@v1.0
@@ -16,8 +16,9 @@ jobs:
           robot_reports_dir: 'reports'
 
       - name: Upload dos resultados dos testes
-        uses: actions/upload-artifact@v2
-        if: always()
+        uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
         with:
           name: robot-reports
           path: reports
+          retention-days: 2
