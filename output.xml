@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.2.2 (Python 3.11.4 on win32)" generated="2025-02-13T01:52:25.364394" rpa="false" schemaversion="5">
+<suite id="s1" name="postToken" source="d:\micha\Documents\Robot_Framework_API\postToken.robot">
+<test id="s1-t1" name="Gerando um token" line="10">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-02-13T01:52:25.609723" level="INFO">${data} = {'username': 'admin', 'password': 'password123'}</msg>
+<var>${data}</var>
+<arg>username=admin</arg>
+<arg>password=password123</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-02-13T01:52:25.609723" elapsed="0.006596"/>
+</kw>
+<kw name="POST" owner="RequestsLibrary">
+<msg time="2025-02-13T01:52:27.588097" level="INFO">POST Request : url=https://restful-booker.herokuapp.com/auth 
+ path_url=/auth 
+ headers={'User-Agent': 'python-requests/2.31.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '48', 'Content-Type': 'application/json'} 
+ body=b'{"username": "admin", "password": "password123"}' 
+ </msg>
+<msg time="2025-02-13T01:52:27.588097" level="INFO">POST Response : url=https://restful-booker.herokuapp.com/auth 
+ status=200, reason=OK 
+ headers={'Server': 'Cowboy', 'Report-To': '{"group":"heroku-nel","max_age":3600,"endpoints":[{"url":"https://nel.heroku.com/reports?ts=1739422376&amp;sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add&amp;s=iGWwpuAXBjhRkF8PtZNT%2BxzTvm3m50OQPZn1oeyt38c%3D"}]}', 'Reporting-Endpoints': 'heroku-nel=https://nel.heroku.com/reports?ts=1739422376&amp;sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add&amp;s=iGWwpuAXBjhRkF8PtZNT%2BxzTvm3m50OQPZn1oeyt38c%3D', 'Nel': '{"report_to":"heroku-nel","max_age":3600,"success_fraction":0.005,"failure_fraction":0.05,"response_headers":["Via"]}', 'Connection': 'keep-alive', 'X-Powered-By': 'Express', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '27', 'Etag': 'W/"1b-D4YTHCH8x2JgEmJwyXCN8a/vwJk"', 'Date': 'Thu, 13 Feb 2025 04:52:56 GMT', 'Via': '1.1 vegur'} 
+ body={"token":"3adb367342365a5"} 
+ </msg>
+<msg time="2025-02-13T01:52:27.589103" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>${BASE_URL}/auth</arg>
+<arg>json=${data}</arg>
+<doc>Sends a POST request.</doc>
+<status status="PASS" start="2025-02-13T01:52:25.617655" elapsed="1.971448"/>
+</kw>
+<kw name="Should Be True" owner="BuiltIn">
+<arg>${response.ok}</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="PASS" start="2025-02-13T01:52:27.589103" elapsed="0.001001"/>
+</kw>
+<kw name="Should Be Equal As Numbers" owner="BuiltIn">
+<msg time="2025-02-13T01:52:27.592104" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to real numbers.</doc>
+<status status="PASS" start="2025-02-13T01:52:27.591107" elapsed="0.000997"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2025-02-13T01:52:27.593622" level="INFO">${data_response} = {'token': '3adb367342365a5'}</msg>
+<var>${data_response}</var>
+<arg>${response.json()}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2025-02-13T01:52:27.592104" elapsed="0.001518"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-02-13T01:52:27.595800" level="INFO">${token} = 3adb367342365a5</msg>
+<var>${token}</var>
+<arg>${data_response}</arg>
+<arg>token</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-02-13T01:52:27.594633" elapsed="0.001167"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-02-13T01:52:27.598549" level="INFO">Seu token é:3adb367342365a5</msg>
+<arg>Seu token é:${token}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-02-13T01:52:27.597134" elapsed="0.002432"/>
+</kw>
+<status status="PASS" start="2025-02-13T01:52:25.608744" elapsed="1.990822"/>
+</test>
+<status status="PASS" start="2025-02-13T01:52:25.376446" elapsed="2.224125"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat name="postToken" id="s1" pass="1" fail="0" skip="0">postToken</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
