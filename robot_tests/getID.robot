@@ -24,10 +24,10 @@ Step 3 - Armazenar Resposta JSON
 Step 4 - Validar Dados Pessoais
     [Arguments]    ${json_response}
     ${firstname}=    Get From Dictionary    ${json_response}    firstname
-    Should Be Equal As Strings    ${firstname}    John
+    Should Be Equal As Strings    ${firstname}    Josh
 
     ${lastname}=    Get From Dictionary    ${json_response}    lastname
-    Should Be Equal As Strings    ${lastname}    Smith
+    Should Be Equal As Strings    ${lastname}    Allen
 
 Step 5 - Validar Preço e Pagamento
     [Arguments]    ${json_response}
@@ -58,7 +58,7 @@ Step 6 - Validar Datas de Reserva
 Step 7 - Validar Necessidades Adicionais
     [Arguments]    ${json_response}
     ${additionalneeds}=    Get From Dictionary    ${json_response}    additionalneeds
-    Should Be Equal As Strings    ${additionalneeds}    Breakfast
+    Should Be Equal As Strings    ${additionalneeds}    midnight snack
 
 
 *** Test Cases ***
